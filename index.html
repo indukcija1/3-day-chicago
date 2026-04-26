@@ -1,0 +1,2587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chicago — A Love Letter from S to Sister</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f7f3ee;
+    --accent: #c0392b;
+    --steel: #2c3e50;
+    --gold: #b8860b;
+    --mist: #8c9aa6;
+    --rule: #d4c9b8;
+    --green: #27ae60;
+    --purple: #8e44ad;
+    --blue: #2980b9;
+    /* Day accent colors */
+    --day1: #2c3e50;
+    --day2: #7d3c0a;
+    --day3: #1a5276;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  .day-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+
+  .day-nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--mist);
+    padding: 14px 24px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .day-nav a:hover { color: var(--ink); border-bottom-color: var(--rule); }
+  .day-nav a.d1:hover, .day-nav a.d1.active { color: var(--day1); border-bottom-color: var(--day1); }
+  .day-nav a.d2:hover, .day-nav a.d2.active { color: var(--day2); border-bottom-color: var(--day2); }
+  .day-nav a.d3:hover, .day-nav a.d3.active { color: var(--day3); border-bottom-color: var(--day3); }
+
+  /* ── GLOBAL MASTHEAD ── */
+  .global-masthead {
+    background: var(--steel);
+    color: white;
+    text-align: center;
+    padding: 80px 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .global-masthead::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 60%, rgba(192,57,43,0.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 20%, rgba(184,134,11,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 90%, rgba(39,97,219,0.15) 0%, transparent 50%);
+  }
+
+  .global-masthead-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .global-masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 100px);
+    font-weight: 900;
+    line-height: 1;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .global-masthead h1 em { font-style: italic; color: var(--gold); }
+
+  .global-masthead-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(15px, 2.2vw, 22px);
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 44px;
+    position: relative;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .day-pills {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .day-pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 30px;
+    padding: 10px 22px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .day-pill:hover { background: rgba(255,255,255,0.2); }
+
+  /* ── PHILOSOPHY BAND ── */
+  .philosophy {
+    background: var(--gold);
+    color: white;
+    padding: 36px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .philosophy-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 12px;
+  }
+
+  .philosophy p {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.75;
+  }
+
+  /* ── DAY HEADER ── */
+  .day-header {
+    padding: 64px 40px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .day-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 10px;
+  }
+
+  .day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 12px;
+  }
+
+  .day-title em { font-style: italic; }
+  .day-title.d1 em { color: var(--day1); }
+  .day-title.d2 em { color: var(--day2); }
+  .day-title.d3 em { color: var(--day3); }
+
+  .day-desc {
+    font-size: 15px;
+    color: #555;
+    max-width: 620px;
+    line-height: 1.75;
+    border-left: 3px solid var(--rule);
+    padding-left: 20px;
+    margin-top: 16px;
+  }
+
+  /* ── TRANSIT BANNER ── */
+  .transit-banner {
+    color: white;
+    padding: 28px 40px;
+    max-width: 900px;
+    margin: 0 auto 0;
+  }
+
+  .transit-banner.d1 { background: var(--day1); }
+  .transit-banner.d2 { background: var(--day2); }
+  .transit-banner.d3 { background: var(--day3); }
+
+  .transit-banner h2 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 10px;
+  }
+
+  .transit-route {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .transit-stop {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .transit-arrow { font-size: 18px; opacity: 0.55; }
+
+  .transit-note {
+    font-size: 13px;
+    opacity: 0.85;
+    line-height: 1.6;
+  }
+
+  .transit-note a { color: white; text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 56px 0 28px;
+  }
+
+  .section-label span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--mist);
+    white-space: nowrap;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── NEIGHBOURHOOD INTRO ── */
+  .neighbourhood-intro {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.8;
+  }
+
+  .neighbourhood-intro h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  /* ── STOP CARD ── */
+  .stop {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 0 24px;
+    margin-bottom: 2px;
+    position: relative;
+  }
+
+  .stop:not(:last-of-type)::before {
+    content: '';
+    position: absolute;
+    left: 43px;
+    top: 52px;
+    bottom: -2px;
+    width: 1px;
+    background: var(--rule);
+    z-index: 0;
+  }
+
+  .stop-time {
+    text-align: right;
+    padding-top: 14px;
+  }
+
+  .time-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--mist);
+    line-height: 1.3;
+  }
+
+  .walk-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  .stop-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2.5px solid var(--accent);
+    position: absolute;
+    left: 37px;
+    top: 18px;
+    z-index: 1;
+  }
+
+  .stop-dot.free   { border-color: var(--green); }
+  .stop-dot.food   { border-color: var(--gold); }
+  .stop-dot.culture{ border-color: var(--purple); }
+  .stop-dot.lake   { border-color: var(--blue); }
+  .stop-dot.finale { border-color: var(--accent); background: var(--accent); }
+  .stop-dot.art    { border-color: #e74c3c; }
+
+  .stop-content {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+  }
+
+  .stop-content:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+
+  .stop-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .stop-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .stop-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .tag-free    { background: #eafaf1; color: var(--green); }
+  .tag-food    { background: #fef9e7; color: var(--gold); }
+  .tag-culture { background: #f4ecfb; color: var(--purple); }
+  .tag-lake    { background: #eaf4fb; color: var(--blue); }
+  .tag-dinner  { background: #fdedec; color: var(--accent); }
+  .tag-comedy  { background: #fdfefe; color: var(--steel); border: 1px solid var(--rule); }
+  .tag-art     { background: #fdf2f0; color: #c0392b; }
+  .tag-optional{ background: #f4f6f7; color: var(--mist); border: 1px solid var(--rule); }
+
+  .stop-desc {
+    font-size: 14.5px;
+    color: #444;
+    margin-bottom: 10px;
+    line-height: 1.75;
+  }
+
+  .callout {
+    border-left: 3px solid var(--gold);
+    background: #fef9e7;
+    padding: 10px 14px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #5a4a00;
+    font-style: italic;
+    line-height: 1.65;
+  }
+
+  .callout strong {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .callout.history { border-color: var(--purple); background: #f8f4fc; color: #4a2a6a; }
+  .callout.history strong { color: var(--purple); }
+
+  .tips { margin-top: 12px; }
+
+  .tip {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 5px;
+    align-items: flex-start;
+  }
+
+  .tip-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+
+  .stop-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+    margin-top: 12px;
+    transition: opacity 0.2s;
+  }
+
+  .stop-link:hover { opacity: 0.7; }
+
+  /* ── TRANSIT CONNECTOR ── */
+  .transit-connector {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    background: #f4f6f7;
+    border-radius: 4px;
+    margin: 8px 0 24px 114px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--mist);
+    letter-spacing: 1px;
+  }
+
+  .transit-connector span { color: var(--ink); font-weight: 500; }
+
+  /* ── RETURN BANNER ── */
+  .return-banner {
+    background: var(--steel);
+    color: white;
+    padding: 32px 40px;
+    margin-top: 56px;
+    border-radius: 4px;
+  }
+
+  .return-banner h3 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 12px;
+  }
+
+  .return-route {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .return-note {
+    font-size: 13.5px;
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+
+  .return-note a { color: #7fb3d3; }
+
+  /* ── LEGEND ── */
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 40px 0 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--mist);
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid;
+  }
+
+  /* ── DAY DIVIDER ── */
+  .day-divider {
+    height: 8px;
+    background: var(--rule);
+    margin: 0;
+  }
+
+  /* ── SUNDAY OPTIONS ── */
+  .sunday-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin: 32px 0;
+  }
+
+  .sunday-option {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 24px;
+    transition: box-shadow 0.2s;
+  }
+
+  .sunday-option:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+  .sunday-option-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 8px;
+  }
+
+  .sunday-option h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .sunday-option p {
+    font-size: 13.5px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .sunday-option ul {
+    margin-top: 10px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .sunday-option ul li {
+    font-size: 13px;
+    color: #555;
+    padding: 4px 0;
+    border-bottom: 1px solid #f0ebe3;
+    display: flex;
+    gap: 8px;
+  }
+
+  .sunday-option ul li:last-child { border-bottom: none; }
+
+  /* ── DEDICATION ── */
+  .dedication-wrap {
+    max-width: 900px;
+    margin: 56px auto 0;
+    padding: 0 40px;
+  }
+
+  .dedication {
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--gold);
+    background: white;
+    padding: 44px 52px;
+    position: relative;
+  }
+
+  .dedication::before {
+    content: '❝';
+    position: absolute;
+    top: -20px;
+    left: 44px;
+    font-size: 52px;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+    background: white;
+    padding: 0 10px;
+  }
+
+  .dedication-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .dedication-text p {
+    font-family: 'Playfair Display', serif;
+    font-size: 16.5px;
+    line-height: 1.9;
+    color: #333;
+    margin-bottom: 18px;
+  }
+
+  .dedication-text p:first-child {
+    font-size: 19px;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .dedication-sign {
+    margin-top: 32px !important;
+    font-style: italic;
+  }
+
+  .dedication-sign strong {
+    font-style: normal;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 3px;
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 32px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--mist);
+    border-top: 1px solid var(--rule);
+    margin-top: 40px;
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 0 20px 60px; }
+    .transit-banner, .day-header, .dedication-wrap { padding-left: 20px; padding-right: 20px; }
+    .global-masthead { padding: 60px 20px 40px; }
+    .day-pills { gap: 8px; }
+    .stop { grid-template-columns: 70px 1fr; gap: 0 14px; }
+    .stop-header { flex-direction: column; }
+    .transit-connector { margin-left: 84px; }
+    .dedication { padding: 32px 24px; }
+    .day-nav a { padding: 12px 14px; font-size: 10px; letter-spacing: 2px; }
+  }
+</style>
+
+<style>
+/* ═══ MOBILE-FIRST OVERRIDES ═══ */
+
+/* Nav - scrollable tabs on mobile */
+@media (max-width: 640px) {
+  .day-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .day-nav::-webkit-scrollbar { display: none; }
+  .day-nav a {
+    padding: 14px 18px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Masthead */
+  .global-masthead { padding: 48px 20px 40px; }
+  .global-masthead-sub { margin-bottom: 28px; }
+  .day-pills { gap: 8px; }
+  .day-pill { padding: 8px 14px; font-size: 10px; }
+
+  /* Philosophy */
+  .philosophy { padding: 28px 20px; }
+  .philosophy p { font-size: 15px; }
+
+  /* Day header */
+  .day-header { padding: 40px 20px 24px; }
+
+  /* Transit banner */
+  .transit-banner { padding: 20px; }
+  .transit-route { gap: 8px; }
+  .transit-stop { font-size: 14px; }
+
+  /* Container */
+  .container { padding: 0 16px 60px; }
+
+  /* Stop layout - single column */
+  .stop { grid-template-columns: 56px 1fr; gap: 0 12px; }
+  .stop-dot { left: 28px; }
+  .stop:not(:last-of-type)::before { left: 34px; }
+  .time-label { font-size: 11px; }
+  .walk-time { font-size: 9px; }
+
+  /* Transit connector */
+  .transit-connector { margin-left: 68px; padding: 10px 14px; font-size: 10px; }
+
+  /* Neighbourhood intro */
+  .neighbourhood-intro { padding: 16px 18px; font-size: 13.5px; }
+
+  /* Dedication */
+  .dedication-wrap { padding: 0 16px; }
+  .dedication { padding: 28px 20px; }
+  .dedication-text p { font-size: 15px; }
+
+  /* Section label */
+  .section-label { margin: 36px 0 20px; }
+
+  /* Sunday options - stack */
+  .sunday-options { grid-template-columns: 1fr; }
+
+  /* Return banner */
+  .return-banner { padding: 24px 20px; }
+}
+
+/* ═══ ACCORDION STOPS ═══ */
+.stop-content { padding: 0; border: none; background: none; box-shadow: none; }
+
+.stop-accordion {
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.stop-accordion[open] {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.stop-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stop-summary::-webkit-details-marker { display: none; }
+
+.stop-summary:active { background: #faf8f5; }
+
+.summary-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.stop-summary .stop-title {
+  font-size: 17px;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .stop-summary .stop-title { font-size: 15px; }
+  .stop-summary { padding: 14px 16px; }
+}
+
+.stop-summary .stop-tag {
+  display: none; /* hidden in summary — shown inside body */
+}
+
+.stop-tag-summary {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mist);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.accordion-icon {
+  font-size: 18px;
+  color: var(--mist);
+  flex-shrink: 0;
+  transition: transform 0.25s;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.stop-accordion[open] .accordion-icon {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+
+.stop-body {
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--rule);
+}
+
+@media (max-width: 640px) {
+  .stop-body { padding: 0 16px 16px; }
+}
+
+.stop-body .stop-header { display: none; } /* title now in summary */
+
+.stop-body .stop-desc { margin-top: 14px; }
+
+/* Smooth open animation */
+.stop-accordion:not([open]) .stop-body { display: none; }
+
+/* Dinner sub-headers */
+.stop-body [style*="Playfair Display"] {
+  margin-top: 20px !important;
+}
+
+/* Callouts inside body */
+.stop-body .callout { margin-top: 12px; }
+
+/* Open all link */
+.expand-all-wrap {
+  text-align: right;
+  padding: 0 0 8px;
+}
+
+.expand-all-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mist);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.expand-all-btn:hover { color: var(--accent); }
+
+/* PHASE 1.3: Reduced hero on mobile */
+@media (max-width: 640px) {
+  .hero {
+    padding: 20px 16px 16px !important;
+  }
+  .hero-title {
+    font-size: clamp(36px, 14vw, 60px) !important;
+    margin-bottom: 8px !important;
+  }
+  .hero-eyebrow {
+    font-size: 8px !important;
+    margin-bottom: 10px !important;
+  }
+  .hero-sub {
+    font-size: 11px !important;
+    margin-bottom: 16px !important;
+  }
+  .hero-pills {
+    gap: 6px !important;
+  }
+  .hero-pill {
+    padding: 7px 12px !important;
+    font-size: 9px !important;
+  }
+}
+
+
+/* PHASE 2.1: Next Day buttons */
+.next-day-cta {
+  max-width: 900px;
+  margin: 32px auto 0;
+  padding: 0 20px 32px;
+  text-align: center;
+}
+.next-day-btn {
+  display: inline-block;
+  background: var(--gold);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
+}
+.next-day-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px rgba(184, 134, 11, 0.3);
+}
+@media (max-width: 640px) {
+  .next-day-btn {
+    font-size: 11px;
+    padding: 12px 24px;
+  }
+}
+
+
+/* PHASE 2.2: Back to top button */
+.back-to-top-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--steel);
+  color: white;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.back-to-top-fab.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top-fab:active {
+  transform: scale(0.95);
+}
+
+
+/* PHASE 2.3: Collapsible dedication */
+.dedication-accordion {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: white;
+  overflow: hidden;
+}
+.dedication-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 28px;
+  cursor: pointer;
+  list-style: none;
+  background: linear-gradient(to right, #fef9e7, white);
+  border-bottom: 1px solid transparent;
+  transition: border 0.2s;
+}
+.dedication-summary::-webkit-details-marker { display: none; }
+.dedication-accordion[open] .dedication-summary {
+  border-bottom-color: var(--rule);
+}
+.dedication-summary-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.dedication-summary-text {
+  flex: 1;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ink);
+}
+.dedication-accordion-icon {
+  font-size: 18px;
+  color: var(--gold);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+.dedication-accordion[open] .dedication-accordion-icon {
+  transform: rotate(45deg);
+}
+@media (max-width: 640px) {
+  .dedication-summary {
+    padding: 16px 20px;
+  }
+  .dedication-summary-text {
+    font-size: 16px;
+  }
+}
+
+
+/* PHASE 2.4: Up Next footers */
+.stop-next {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--rule);
+  font-size: 13px;
+  color: var(--mist);
+}
+.stop-next-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-right: 8px;
+  color: var(--mist);
+}
+.stop-next-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.stop-next-link:hover {
+  text-decoration: underline;
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // ═══ PHASE 1.1: Timeline items tappable ═══
+  var stopAccordions = [];
+  
+  // Convert stop-content divs to accordion details
+  document.querySelectorAll('.stop-content').forEach(function(el, index) {
+    var header = el.querySelector('.stop-header');
+    var titleEl = header ? header.querySelector('.stop-title') : null;
+    var tagEl = header ? header.querySelector('.stop-tag') : null;
+
+    // Find the time from sibling stop-time
+    var stop = el.closest('.stop');
+    var timeEl = stop ? stop.querySelector('.time-label') : null;
+    var timeText = timeEl ? timeEl.innerHTML.replace(/<br\s*\/?>/g, ' ').trim() : '';
+
+    var title = titleEl ? titleEl.innerHTML : 'Stop';
+    var tagText = tagEl ? tagEl.textContent.trim() : '';
+
+    var details = document.createElement('details');
+    details.className = 'stop-accordion';
+    details.dataset.stopIndex = index;
+
+    var summary = document.createElement('summary');
+    summary.className = 'stop-summary';
+    summary.innerHTML =
+      '<div class="summary-inner">' +
+        (timeText ? '<span class="time-pill">' + timeText + '</span>' : '') +
+        '<div class="stop-title">' + title + '</div>' +
+        (tagText ? '<span class="stop-tag-summary">' + tagText + '</span>' : '') +
+      '</div>' +
+      '<span class="accordion-icon">＋</span>';
+
+    var body = document.createElement('div');
+    body.className = 'stop-body';
+    body.innerHTML = el.innerHTML;
+
+    details.appendChild(summary);
+    details.appendChild(body);
+
+    el.parentNode.replaceChild(details, el);
+    stopAccordions.push(details);
+  });
+
+  // ═══ PHASE 2.4: Add "Up Next" footers ═══
+  stopAccordions.forEach(function(accordion, idx) {
+    var nextAccordion = stopAccordions[idx + 1];
+    if (nextAccordion) {
+      var nextTitle = nextAccordion.querySelector('.stop-title');
+      var nextTime = nextAccordion.querySelector('.time-pill');
+      if (nextTitle) {
+        var nextName = nextTitle.textContent.trim();
+        var nextTimeText = nextTime ? nextTime.textContent.trim() : '';
+        var upNextHtml = 
+          '<div class="stop-next">' +
+            '<span class="stop-next-label">Up next:</span>' +
+            '<a href="#" class="stop-next-link" data-next-idx="' + (idx + 1) + '">' +
+              nextName + (nextTimeText ? ' at ' + nextTimeText : '') + ' →' +
+            '</a>' +
+          '</div>';
+        var bodyEl = accordion.querySelector('.stop-body');
+        if (bodyEl) {
+          bodyEl.insertAdjacentHTML('beforeend', upNextHtml);
+        }
+      }
+    }
+  });
+
+  // Handle "Up Next" link clicks
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('stop-next-link')) {
+      e.preventDefault();
+      var nextIdx = parseInt(e.target.dataset.nextIdx);
+      var nextAccordion = stopAccordions[nextIdx];
+      if (nextAccordion) {
+        // Close current
+        var currentAccordion = e.target.closest('.stop-accordion');
+        if (currentAccordion) currentAccordion.open = false;
+        // Scroll to and open next
+        nextAccordion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(function() { nextAccordion.open = true; }, 400);
+      }
+    }
+  });
+
+  // ═══ PHASE 1.1: Make timeline items tappable ═══
+  document.querySelectorAll('.timeline-list li').forEach(function(item, idx) {
+    item.style.cursor = 'pointer';
+    item.dataset.stopIndex = idx;
+    item.addEventListener('click', function() {
+      var accordion = stopAccordions[idx];
+      if (accordion) {
+        accordion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(function() { accordion.open = true; }, 400);
+      }
+    });
+  });
+
+  // ═══ PHASE 2.2: Back to top button ═══
+  var backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 600) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ═══ PHASE 2.5: Enhanced navigation ═══
+  document.querySelectorAll('.hero-pill, .day-nav a, .next-day-btn').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        var targetId = href.substring(1);
+        var target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+
+  // Sticky nav scroll-aware visibility
+  var nav = document.getElementById('dayNav');
+  var heroEl = document.querySelector('.hero');
+  if (nav && heroEl) {
+    window.addEventListener('scroll', function() {
+      var heroBottom = heroEl.getBoundingClientRect().bottom;
+      if (heroBottom < 0) {
+        nav.classList.add('visible');
+      } else {
+        nav.classList.remove('visible');
+      }
+    }, { passive: true });
+  }
+
+  // Expand all / collapse all button
+  document.querySelectorAll('.expand-all-wrap').forEach(function(wrap) {
+    var btn = wrap.querySelector('.expand-all-btn');
+    if (!btn) return;
+    var section = wrap.closest('.container');
+    btn.addEventListener('click', function() {
+      var accordions = (section || document).querySelectorAll('.stop-accordion');
+      var anyOpen = Array.from(accordions).some(function(a) { return a.open; });
+      accordions.forEach(function(a) { a.open = !anyOpen; });
+      btn.textContent = anyOpen ? 'Expand All' : 'Collapse All';
+    });
+  });
+
+  // Sticky nav active state on scroll
+  var sections = document.querySelectorAll('#day1, #day2, #day3');
+  var navLinks = document.querySelectorAll('.day-nav a');
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        navLinks.forEach(function(link) { link.classList.remove('active'); });
+        var id = entry.target.id;
+        var active = document.querySelector('.day-nav a[href="#' + id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  sections.forEach(function(s) { observer.observe(s); });
+
+  // Auto-open first stop in each day on load (desktop hint)
+  if (window.innerWidth > 640) {
+    document.querySelectorAll('.stop-accordion:first-of-type').forEach(function(a) {
+      a.open = true;
+    });
+  }
+});
+</script>
+
+
+<style>
+/* ═══ FIX: Body weight 400 for better mobile readability ═══ */
+body {
+  font-weight: 400;
+}
+
+/* ═══ FIX: Compact sticky nav, hidden until scrolled ═══ */
+.day-nav {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  z-index: 100;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--rule);
+  border-radius: 0 0 12px 12px;
+  display: flex;
+  gap: 0;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+  padding: 0;
+}
+
+.day-nav.visible {
+  transform: translate(-50%, 0);
+}
+
+.day-nav a {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--mist);
+  padding: 11px 16px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.day-nav a.letter-link {
+  color: var(--accent);
+  border-left: 1px solid var(--rule);
+}
+
+.day-nav a.active.d1 { color: var(--day1); border-bottom-color: var(--day1); }
+.day-nav a.active.d2 { color: var(--day2); border-bottom-color: var(--day2); }
+.day-nav a.active.d3 { color: var(--day3); border-bottom-color: var(--day3); }
+
+@media (max-width: 640px) {
+  .day-nav { left: 8px; right: 8px; transform: translateY(-100%); }
+  .day-nav.visible { transform: translateY(0); }
+  .day-nav a { padding: 10px 12px; font-size: 10px; flex: 1; text-align: center; }
+}
+
+/* ═══ FIX: Mobile stop layout - time goes ABOVE title, full width content ═══ */
+@media (max-width: 640px) {
+  .stop {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 12px;
+  }
+
+  .stop:not(:last-of-type)::before { display: none; }
+
+  .stop-time {
+    display: none;
+  }
+
+  .stop-dot { display: none; }
+
+  /* Time and tag now appear inside the summary as small pill */
+  .stop-summary .stop-meta-mobile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .stop-summary .time-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--mist);
+    background: #f4f0e8;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  .summary-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .stop-summary .stop-tag-summary {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .stop-summary .stop-title { font-size: 16px; }
+}
+
+
+/* Timeline items are tappable */
+.timeline-list li {
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin: 0 -8px;
+}
+.timeline-list li:hover {
+  background: #f9f6f0;
+}
+.timeline-list li:active {
+  background: #f0ebe0;
+}
+
+/* Show time-pill only on mobile */
+.time-pill { display: none; }
+
+@media (max-width: 640px) {
+  .time-pill { display: inline-block !important; }
+}
+
+/* ═══ FIX: Day-at-a-glance timeline strip ═══ */
+.day-timeline {
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 0 0 24px;
+  max-width: 900px;
+}
+
+.day-timeline-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timeline-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.timeline-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 13.5px;
+  color: #333;
+  padding: 4px 0;
+  border-bottom: 1px dashed #f0ebe0;
+}
+
+.timeline-list li:last-child { border-bottom: none; }
+
+.timeline-time {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--mist);
+  min-width: 56px;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.timeline-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.timeline-emoji { font-size: 13px; }
+
+@media (max-width: 640px) {
+  .day-timeline { padding: 14px 16px; }
+  .timeline-list li { font-size: 13px; gap: 10px; }
+  .timeline-time { min-width: 50px; font-size: 10px; }
+}
+
+/* ═══ FIX: Better expand-all button ═══ */
+.expand-all-wrap {
+  text-align: right;
+  padding: 0 0 8px;
+}
+
+.expand-all-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mist);
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: all 0.2s;
+}
+
+.expand-all-btn:hover, .expand-all-btn:active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ═══ FIX: Tip text alignment - icons stay aligned ═══ */
+.tip {
+  display: flex;
+  gap: 8px;
+  font-size: 13.5px;
+  color: #444;
+  margin-bottom: 6px;
+  align-items: flex-start;
+  line-height: 1.55;
+}
+
+.tip-icon {
+  flex-shrink: 0;
+  font-size: 13px;
+  margin-top: 2px;
+  width: 18px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .tip { font-size: 13px; }
+}
+
+/* ═══ FIX: Hero — slightly less tall on mobile so first content peeks above fold ═══ */
+@media (max-width: 640px) {
+  .hero { padding: 36px 20px 28px; }
+  .hero-title { font-size: clamp(46px, 16vw, 80px); }
+  .hero-eyebrow { font-size: 9px; margin-bottom: 12px; }
+  .hero-sub { font-size: 12px; margin-bottom: 20px; }
+}
+
+/* ═══ FIX: Walking connector alignment with new layout ═══ */
+@media (max-width: 640px) {
+  .transit-connector {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: -4px;
+    margin-bottom: 12px;
+    padding: 8px 14px;
+    font-size: 10.5px;
+    border-radius: 0 0 4px 4px;
+    background: #f4f0e8;
+  }
+}
+
+/* ═══ FIX: Sunday options — already 1-column on mobile, just make Milwaukee its own card ═══ */
+.sunday-option-extra {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+
+/* ═══ FIX: Stop tag on mobile - smaller ═══ */
+@media (max-width: 640px) {
+  .stop-summary { padding: 14px 14px; }
+  .stop-body { padding: 0 14px 16px; }
+}
+
+/* ═══ FIX: Section labels - smaller on mobile ═══ */
+@media (max-width: 640px) {
+  .section-label { margin: 28px 0 14px; }
+  .section-label span { font-size: 9px; }
+}
+
+/* ═══ FIX: Day desc on mobile ═══ */
+@media (max-width: 640px) {
+  .day-desc { font-size: 14px; padding-left: 14px; }
+}
+
+/* ═══ FIX: Better callout on mobile ═══ */
+@media (max-width: 640px) {
+  .callout { padding: 10px 14px; font-size: 12.5px; line-height: 1.65; }
+  .stop-desc { font-size: 14px; line-height: 1.7; }
+}
+
+/* ═══ FIX: Mobile transit banner ═══ */
+@media (max-width: 640px) {
+  .transit-route { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .transit-arrow { display: none; }
+  .transit-stop {
+    font-size: 13px;
+    padding-left: 12px;
+    border-left: 2px solid rgba(255,255,255,0.3);
+  }
+}
+</style>
+
+</head>
+<body>
+
+<!-- STICKY NAV (compact, appears on scroll past hero) -->
+<nav class="day-nav" id="dayNav" aria-hidden="true">
+  <a href="#day1-timeline" class="d1">Fri</a>
+  <a href="#day2-timeline" class="d2">Sat</a>
+  <a href="#day3" class="d3">Sun</a>
+  <a href="#letter" class="letter-link">✉ Letter</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Made by S for Sister</div>
+  <h1 class="hero-title"><em>Chicago</em></h1>
+  <p class="hero-sub">Three Days · Three Neighbourhoods · Over Twenty-Five Years</p>
+  <div class="hero-pills">
+    <a href="#day1-timeline" class="hero-pill d1-pill">Fri · Lincoln Park</a>
+    <a href="#day2-timeline" class="hero-pill d2-pill">Sat · Pilsen &amp; Chinatown</a>
+    <a href="#day3" class="hero-pill d3-pill">Sun · You Decide</a>
+  </div>
+</div>
+
+
+
+<div class="transit-banner d1">
+  <h2>Getting There from Evanston</h2>
+  <div class="transit-route">
+    <span class="transit-stop">Davis St / Central St, Evanston</span>
+    <span class="transit-arrow">→</span>
+    <span class="transit-stop">Purple Line Express</span>
+    <span class="transit-arrow">→</span>
+    <span class="transit-stop">Fullerton Station (~35 min)</span>
+  </div>
+  <div class="transit-note">
+    Take the <strong>Purple Line Express</strong> or <strong>Red Line</strong> from Evanston south to the <strong>Fullerton stop</strong>. Once in Lincoln Park, every stop on this itinerary is walkable — no rideshares needed. Buy a <a href="https://www.ventrachicago.com/" target="_blank" rel="noopener noreferrer">Ventra card</a> or tap contactless at any turnstile. Day pass: $5. <a href="https://www.transitchicago.com/purpleline/" target="_blank" rel="noopener noreferrer">CTA Purple Line info ↗</a>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="day-timeline" id="day1-timeline">
+    <div class="day-timeline-label">
+      <span>Friday at a Glance</span>
+      <span style="color: var(--mist); text-transform: none; letter-spacing: 0; font-size: 11px;">Tap any stop below to expand</span>
+    </div>
+    <ul class="timeline-list">
+      <li><span class="timeline-time">9:00 AM</span><span class="timeline-name">🥯 Bagelers Coffeehouse</span></li>
+      <li><span class="timeline-time">10:00</span><span class="timeline-name">🧙 Oz Park</span></li>
+      <li><span class="timeline-time">10:50</span><span class="timeline-name">🏛️ Chicago History Museum <em style="color:var(--mist);font-size:11px;">(optional)</em></span></li>
+      <li><span class="timeline-time">12:30 PM</span><span class="timeline-name">🌊 Fullerton Beach &amp; the Lake</span></li>
+      <li><span class="timeline-time">1:15</span><span class="timeline-name">🥗 Sweetgreen lunch</span></li>
+      <li><span class="timeline-time">2:15</span><span class="timeline-name">🦁 Lincoln Park Zoo</span></li>
+      <li><span class="timeline-time">3:15</span><span class="timeline-name">🌿 Nature Boardwalk</span></li>
+      <li><span class="timeline-time">3:50</span><span class="timeline-name">🌺 Lincoln Park Conservatory</span></li>
+      <li><span class="timeline-time">5:00</span><span class="timeline-name">🍔 Dinner at The VIG</span></li>
+      <li><span class="timeline-time">6:30</span><span class="timeline-name">😂 The Second City</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+  <div class="expand-all-wrap"><button class="expand-all-btn">Expand All</button></div>
+  <div class="section-label"><span>Morning</span></div>
+
+  <!-- BAGELERS -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">9:00<br>AM</div>
+    </div>
+    <div class="stop-dot food"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">The Bagelers Coffeehouse</div>
+        <span class="stop-tag tag-food">Breakfast · $</span>
+      </div>
+      <div class="stop-desc">Kettle-boiled bagels, your choice of spreads and schmears. My go-to: the salmon bagel — split one between you and your bf, it is generous and will fuel the morning. Salted caramel latte is non-negotiable.</div>
+      <div class="callout">
+        <strong>💛 From S</strong>
+        In corporate America, bagels show up at every breakfast meeting — stacked in a box, eaten standing up in a conference room. That is probably how I had my first one. It does not count. This is the real thing: sit down, build it yourself, eat it slowly. A distinctly American ritual. Chicago will give it to you properly.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">💰</span> $8–12 per person with coffee. Arrive by 9 AM on Fridays to beat the rush.</div>
+        <div class="tip"><span class="tip-icon">⏱️</span> Allow 45 min to settle in and ease into the day.</div>
+      </div>
+      <a href="https://www.thebagelers.com/" target="_blank" class="stop-link" rel="noopener noreferrer">thebagelers.com ↗</a>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>12 min walk</span> south on Lincoln Ave to Burling St</div>
+
+  <!-- OZ PARK -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">10:00<br>AM</div>
+    </div>
+    <div class="stop-dot free"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Oz Park</div>
+        <span class="stop-tag tag-free">Free · 30–40 min</span>
+      </div>
+      <div class="stop-desc">L. Frank Baum wrote <em>The Wizard of Oz</em> a few blocks from here. The park has life-size bronze statues of Dorothy, the Tin Man, the Scarecrow, and the Cowardly Lion. All four photos are mandatory.</div>
+      <div class="callout">
+        <strong>💛 From S</strong>
+        Remember how we used to disappear into books as kids — gone, unreachable, while mom searched the house? The Wizard of Oz was one of those books. Now here we are, grown up, in a park built in its honour. Take all four photos.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">📸</span> Photo mission: Dorothy, Tin Man, Scarecrow, Cowardly Lion — collect all four.</div>
+        <div class="tip"><span class="tip-icon">🆓</span> Completely free, open daily 6 AM – 11 PM.</div>
+      </div>
+      <a href="https://www.chicagoparkdistrict.com/parks-facilities/Oz-Park/" target="_blank" class="stop-link" rel="noopener noreferrer">Chicago Park District ↗</a>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>10 min walk</span> east on Dickens Ave to Clark St, then south to the museum</div>
+
+  <!-- HISTORY MUSEUM -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">10:50<br>AM</div>
+    </div>
+    <div class="stop-dot culture"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Chicago History Museum</div>
+        <span class="stop-tag tag-optional">Optional · ~90 min</span>
+      </div>
+      <div class="stop-desc">Optional — but a genuinely good museum. The Great Fire, the original L train car, Chicago's jazz and blues history, its political story. <em>Ferris Bueller</em>, <em>The Blues Brothers</em>, <em>The Bear</em> — the city that made all of them.</div>
+      <div class="callout">
+        <strong>💛 From S</strong>
+        Find the blues and jazz club recreation inside and take a photo there. Chicago blues is not background music — it is one of the most important American art forms ever made, and this city is where it was born.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">🎟️</span> Admission: ~$22 adults. Check website for discounts before you go.</div>
+        <div class="tip"><span class="tip-icon">⏱️</span> A focused 60–75 min highlights tour works if you want to keep moving.</div>
+        <div class="tip"><span class="tip-icon">⚠️</span> Closed Mondays. Open Fri 9:30 AM – 4:30 PM.</div>
+      </div>
+      <a href="https://www.chicagohistory.org/" target="_blank" class="stop-link" rel="noopener noreferrer">chicagohistory.org ↗</a>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>14 min walk</span> east on Dickens through the park to the lakefront</div>
+
+  <div class="section-label"><span>Midday</span></div>
+
+  <!-- LAKE MICHIGAN -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">12:30<br>PM</div>
+    </div>
+    <div class="stop-dot lake"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Fullerton Beach — Lake Michigan</div>
+        <span class="stop-tag tag-lake">Free · Best Photo Spot</span>
+      </div>
+      <div class="stop-desc">The full downtown skyline behind you — Hancock Tower, Tribune Tower, the lakefront. The photo that makes people understand why Chicagoans talk about this city the way they do. After many years, this view still stops me.</div>
+      <div class="callout">
+        <strong>💛 From S</strong>
+        Ten minutes north of here is Edgewater, where I lived when I arrived over 25 years ago. I used to stand at the lake there and look at the water. It felt enormous — and when you are alone in a foreign city, it feels bigger than it is. I was displaced. Unsure. I missed all of you. I felt the weight of having to succeed. The city was cold in ways that had nothing to do with the weather. But you adapt, or you don't. I had to. And somewhere along the way, surviving became home. The lake looks the same. I am a different person now.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">🧥</span> Chicago earns its "Windy City" nickname — the lakefront breeze can cut right through you even in May. Bring a jacket.</div>
+        <div class="tip"><span class="tip-icon">🚲</span> Alternatively: rent a <a href="https://divvybikes.com/" target="_blank" rel="noopener noreferrer">Divvy bike</a> and ride the lakefront path — one of the great urban cycling routes in America (~15 min ride vs. 14 min walk back).</div>
+        <div class="tip"><span class="tip-icon">📸</span> Face south-west for the skyline behind you. Shoot in the afternoon for the best light.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>9 min walk</span> west on Fullerton back to Lincoln Ave</div>
+
+  <!-- SWEETGREEN -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">1:15<br>PM</div>
+    </div>
+    <div class="stop-dot food"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Sweetgreen Lincoln Park</div>
+        <span class="stop-tag tag-food">Lunch · $</span>
+      </div>
+      <div class="stop-desc">Build-your-own salad bowls — same concept as Chipotle, but for salads and warm bowls. These fast-casual pick-your-ingredients places are everywhere in America. Sweetgreen has earned its staying power. Try the Crispy Rice bowl or the Shroomami.</div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">💰</span> $13–16 per bowl. Order in-app to skip the line.</div>
+        <div class="tip"><span class="tip-icon">📍</span> 2361 N Lincoln Ave — right between Oz Park and the zoo.</div>
+      </div>
+      <a href="https://www.sweetgreen.com/locations/lincoln-common" target="_blank" class="stop-link" rel="noopener noreferrer">sweetgreen.com ↗</a>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>8 min walk</span> south on Lincoln Ave then east on Fullerton to the zoo entrance</div>
+
+  <div class="section-label"><span>Afternoon</span></div>
+
+  <!-- ZOO -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">2:15<br>PM</div>
+    </div>
+    <div class="stop-dot free"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Lincoln Park Zoo</div>
+        <span class="stop-tag tag-free">Free · 60 min</span>
+      </div>
+      <div class="stop-desc">One of the last truly free urban zoos in America — and genuinely world-class. Gorillas, lions, giraffes, polar bears, penguins. It does get busy on sunny Fridays, so don't rush — just stroll, take it all in, and enjoy being here together. There is no better place in this city for a slow, happy afternoon walk.</div>
+      <div class="callout">
+        <strong>💛 From S</strong>
+        This is one of those places that is just better when you have someone you love beside you. Hold hands. Go slowly. Let the gorillas surprise you.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">🆓</span> Free admission, year-round. Open daily 10 AM – 5 PM.</div>
+        <div class="tip"><span class="tip-icon">📸</span> The great ape house is unmissable. Arrive before 4 PM for best animal activity.</div>
+      </div>
+      <a href="https://www.lpzoo.org/" target="_blank" class="stop-link" rel="noopener noreferrer">lpzoo.org ↗</a>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>3 min walk</span> to the south end of the zoo — follow signs to South Pond</div>
+
+  <!-- NATURE BOARDWALK -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">3:15<br>PM</div>
+    </div>
+    <div class="stop-dot free"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Nature Boardwalk</div>
+        <span class="stop-tag tag-free">Free · 30 min</span>
+      </div>
+      <div class="stop-desc">A wooden boardwalk around the zoo's South Pond — wetlands, herons, turtles, beavers. Then you look up and the Chicago skyline is reflected in the still water. One of my favourite places in this city.</div>
+      <div class="callout">
+        <strong>💛 From S</strong>
+        It feels displaced — wild nature next to a city skyline. Makes no sense. Completely wonderful. Only thing missing is Shegy, who would already be collecting water samples and lecturing us on the amoebas.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">📸</span> Shoot from the boardwalk bridge facing north for the classic "skyline-over-still-water" Chicago shot.</div>
+        <div class="tip"><span class="tip-icon">🌿</span> Open daily 7 AM – 7 PM. Free.</div>
+      </div>
+      <a href="https://www.lpzoo.org/pressroom/nature-boardwalk/" target="_blank" class="stop-link" rel="noopener noreferrer">Nature Boardwalk ↗</a>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>5 min walk</span> north along Stockton Dr to the Conservatory entrance</div>
+
+  <!-- CONSERVATORY -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">3:50<br>PM</div>
+    </div>
+    <div class="stop-dot free"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Lincoln Park Conservatory</div>
+        <span class="stop-tag tag-free">Free · 40 min</span>
+      </div>
+      <div class="stop-desc">A Victorian glass greenhouse built in 1895. Towering palms, cathedral ferns, rare orchids. A tropical world inside a northern city. Most tourists walk right past it.</div>
+      <div class="callout">
+        <strong>💛 From S</strong>
+        Best in winter — when it is grey and freezing outside, you walk in and it is suddenly the tropics. One of those small Chicago secrets that gets you through January. Coming in May is lovely too. And if you want to go bigger: Milwaukee's Mitchell Park Conservatory has three full domes — tropical, desert, and seasonal events. Worth the drive.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">🎟️</span> Free, but timed tickets required — reserve in advance at lincolnparkconservancy.org.</div>
+        <div class="tip"><span class="tip-icon">⚠️</span> Closes at 4:30 PM sharp — don't linger at the boardwalk. Open Wed–Sun only.</div>
+        <div class="tip"><span class="tip-icon">📸</span> The fern room is extraordinary — lush, dramatic, impossibly green.</div>
+      </div>
+      <a href="https://www.lincolnparkconservancy.org/conservatory-reservations/" target="_blank" class="stop-link" rel="noopener noreferrer">Reserve Free Tickets ↗</a>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>18 min walk</span> south on Clark St to Wells St, into Old Town · or <strong>Uber/Lyft ~5 min</strong></div>
+
+  <div class="section-label"><span>Evening</span></div>
+
+  <!-- DINNER -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">5:00<br>PM</div>
+    </div>
+    <div class="stop-dot food"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">The VIG Old Town</div>
+        <span class="stop-tag tag-dinner">Dinner · $$</span>
+      </div>
+      <div class="stop-desc">Tonight, we are taking you out — and we picked this one for you. The VIG is a proper Chicago-style pub on Wells Street in Old Town: lively, warm, deeply good food, great cocktails. Burgers, fried chicken, and a steak sandwich that people come back for repeatedly. Chicago hospitality at its most genuine.</div>
+      <div class="callout">
+        <strong>💛 From S</strong>
+        The American neighbourhood tavern — every area has one. Lively, unpretentious, food genuinely central. Here is the thing about Americans: going out means food and a drink together. Not just a drink, not just coffee. A meal. Gathering around a table is how people socialise here. One of the first cultural habits I came to love. The VIG does it better than most — higher quality than your average pub, same spirit. Bob Dylan played Wells Street in the 1960s. The comedy counterculture that gave rise to Second City started on this block.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">📅</span> Make a reservation — Friday evenings fill fast.</div>
+        <div class="tip"><span class="tip-icon">⏱️</span> Allow 75 min — Second City is a 5-minute walk from the front door.</div>
+        <div class="tip"><span class="tip-icon">🍔</span> Do not skip the burger.</div>
+      </div>
+      <a href="http://www.thevigchicago.com/" target="_blank" class="stop-link" rel="noopener noreferrer">thevigchicago.com ↗</a>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>5 min walk</span> south on Wells St to North Ave</div>
+
+  <!-- SECOND CITY -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">6:30<br>PM</div>
+    </div>
+    <div class="stop-dot finale"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">The Second City</div>
+        <span class="stop-tag tag-comedy">The Main Event</span>
+      </div>
+      <div class="stop-desc">The most famous comedy club in the world — and tonight, you are going for the first time. Since 1959, Second City has launched more comedic careers than any institution on earth. The format: polished sketch comedy followed by an improv set — scenes invented entirely in the moment, from audience suggestions, with no script and no safety net. Intimate, sharp, genuinely unpredictable.</div>
+      <div class="callout">
+        <strong>💛 From S — On Improv</strong>
+        The first time I saw live improv I didn't get it. Nobody explained it. So: the performers make everything up as they go, from audience suggestions, no script. The chaos is the point. When something lands, it lands hard — because everyone knows it was just invented, just now, just for this room. Give it a few minutes. Then lean in and laugh.
+      </div>
+      <div class="callout history">
+        <strong>🌟 Hall of Fame</strong>
+        <strong>Tina Fey, Steve Carell, Stephen Colbert, Bill Murray, Gilda Radner, John Belushi, Dan Aykroyd, Chris Farley, Mike Myers, Amy Poehler, Keegan-Michael Key</strong> — all started on this stage. You are not just seeing a show. You are standing on sacred comedy ground.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">🎭</span> Show runs ~2 hours. A free improv set often follows the late Friday performance — stay for it.</div>
+        <div class="tip"><span class="tip-icon">🎟️</span> Arrive by 6:15 PM to settle in before the 6:30 start.</div>
+        <div class="tip"><span class="tip-icon">🍹</span> Drinks served throughout. Tip the servers — they weave through the room like ghosts.</div>
+      </div>
+      <a href="http://www.secondcity.com/" target="_blank" class="stop-link" rel="noopener noreferrer">secondcity.com ↗</a>
+    </div>
+  </div>
+
+  <!-- RETURN DAY 1 -->
+  <div class="return-banner">
+    <h3>Return to Evanston — Friday Night</h3>
+    <div class="return-route">North/Clybourn Red Line → Howard → Purple Line → Davis St Evanston</div>
+    <div class="return-note">
+      After the show (~9 PM), walk 5 min west to the <strong>North/Clybourn Red Line station</strong>. Take the Red Line north to Howard, transfer to the Purple Line for Evanston. Total ~40 min. The Red Line runs 24 hours — no rush.
+      <br><br>
+      <a href="https://www.transitchicago.com/travel_information/planner/" target="_blank" rel="noopener noreferrer">CTA Trip Planner ↗</a> &nbsp;|&nbsp; <a href="https://www.ventrachicago.com/" target="_blank" rel="noopener noreferrer">Ventra Card ↗</a>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--green)"></div> Free</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--gold)"></div> Food &amp; drink</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--purple)"></div> Culture</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--blue)"></div> Lakefront</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--accent);background:var(--accent)"></div> Main event</div>
+  </div>
+</div>
+
+<!-- NEXT DAY CTA -->
+<div class="next-day-cta">
+  <a href="#day2-timeline" class="next-day-btn">
+    Next Day: Saturday — Pilsen &amp; Chinatown →
+  </a>
+</div>
+
+</div><!-- end day1 -->
+
+<div class="day-divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     DAY 2 — SATURDAY — PILSEN + CHINATOWN
+═══════════════════════════════════════════════ -->
+<div id="day2">
+
+<div class="day-header">
+  <div class="day-number">Day Two · Saturday</div>
+  <div class="day-title d2"><em>Pilsen</em> &amp; Chinatown</div>
+  <div class="day-desc">Two neighbourhoods built by immigrants who arrived with little and refused to disappear. Their art, their food, their streets are still here — and they are some of the most alive places in this city. This is the Chicago I am most proud to show you.</div>
+</div>
+
+<div class="transit-banner d2">
+  <h2>Getting There from Evanston</h2>
+  <div class="transit-route">
+    <span class="transit-stop">Evanston</span>
+    <span class="transit-arrow">→</span>
+    <span class="transit-stop">Drive south on Lake Shore Dr or I-90/94</span>
+    <span class="transit-arrow">→</span>
+    <span class="transit-stop">W 18th St, Pilsen (~40 min)</span>
+  </div>
+  <div class="transit-note">
+    Driving today. Head south on <strong>Lake Shore Drive</strong> for a scenic route, or take <strong>I-90/94 south</strong> for speed — exit at 18th St. Street parking along W 18th St is generally available on Saturdays. Park once in Pilsen and walk the neighbourhood. Then drive to Chinatown (~10 min south). Street parking near Cermak and Wentworth is usually manageable on Saturday afternoons.
+    <br><a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="day-timeline" id="day2-timeline">
+    <div class="day-timeline-label">
+      <span>Saturday at a Glance</span>
+      <span style="color: var(--mist); text-transform: none; letter-spacing: 0; font-size: 11px;">Driving day · Tap any stop</span>
+    </div>
+    <ul class="timeline-list">
+      <li><span class="timeline-time">9:00 AM</span><span class="timeline-name">☕ Café Jumping Bean</span></li>
+      <li><span class="timeline-time">9:45</span><span class="timeline-name">🎨 18th Street Mural Walk</span></li>
+      <li><span class="timeline-time">10:30</span><span class="timeline-name">🦋 Hector Duarte Mural</span></li>
+      <li><span class="timeline-time">10:50</span><span class="timeline-name">🖼️ National Museum of Mexican Art</span></li>
+      <li><span class="timeline-time">12:45 PM</span><span class="timeline-name">🌮 Lunch — Cantón Regio or Taco Crawl</span></li>
+      <li><span class="timeline-time">2:20</span><span class="timeline-name">🏮 Chinatown Gateway Arch</span></li>
+      <li><span class="timeline-time">2:35</span><span class="timeline-name">🦆 Wentworth Avenue Stroll</span></li>
+      <li><span class="timeline-time">3:05</span><span class="timeline-name">🐉 Chinatown Square Plaza</span></li>
+      <li><span class="timeline-time">5:30</span><span class="timeline-name">🍲 Dinner — Shabu or MingHin</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="neighbourhood-intro">
+    <h3>About Pilsen</h3>
+    Originally Czech and Bohemian in the late 1800s — Pilsen is named after a city in what is now the Czech Republic. By the 1950s and '60s, Mexican families arrived and transformed it into the cultural heart of Chicago's Mexican community. The murals are not decoration. They are memory, protest, and identity painted on walls by people who built a life in a city that did not always make it easy.
+    <br><br>
+    I arrived in this city over 25 years ago with 500 euros and built my life the same way — one neighbourhood at a time. Pilsen is that story told in colour, for everyone to see.
+  </div>
+
+  <div class="expand-all-wrap"><button class="expand-all-btn">Expand All</button></div>
+  <div class="section-label"><span>Morning · Pilsen</span></div>
+
+  <!-- COFFEE PILSEN -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">9:00<br>AM</div>
+    </div>
+    <div class="stop-dot food"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Café Jumping Bean</div>
+        <span class="stop-tag tag-food">Coffee &amp; Breakfast · $</span>
+      </div>
+      <div class="stop-desc">Park up and start here. Café Jumping Bean has been a Pilsen institution since 1994 — one of the oldest and most beloved coffee shops in the neighbourhood. The walls are covered in local art, the vibe is unhurried and genuinely neighbourhood, and the coffee is excellent. Bagels, breakfast sandwiches, soups, and focaccia sandwiches round out a simple menu that does everything well. Open from 6:30 AM on Saturdays — you will be among the first in the door.</div>
+      <div class="callout">
+        <strong>💛 From S</strong>
+        This place has been here longer than most of the newer cafés that have come and gone around it, and it shows. It feels like a real neighbourhood spot — not curated for visitors, just good. Grab your coffee, take a table, look at the art on the walls, and ease into what is going to be a full and wonderful day. Street parking is available along 18th St and the surrounding blocks — Saturdays are easier to park than weekdays.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">🅿️</span> Street parking on W 18th St and side streets — free on Saturdays in most spots, check signs.</div>
+        <div class="tip"><span class="tip-icon">⏱️</span> Allow 30–40 min. You are already exactly where the mural walk begins.</div>
+        <div class="tip"><span class="tip-icon">💰</span> Very affordable. Cash and card accepted.</div>
+      </div>
+      <a href="https://www.yelp.com/biz/cafe-jumping-bean-chicago" target="_blank" class="stop-link" rel="noopener noreferrer">Café Jumping Bean on Yelp ↗</a>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>1 min walk</span> — step outside and you are already on the mural walk</div>
+
+  <!-- 18TH STREET MURALS -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">9:45<br>AM</div>
+    </div>
+    <div class="stop-dot art"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">18th Street Mural Walk</div>
+        <span class="stop-tag tag-art">Free · 40 min</span>
+      </div>
+      <div class="stop-desc">Step off the train and you are already inside the gallery — the 18th Street station itself has murals on its walls. Walk east along 18th Street. Nearly every block is a different work: portraits of César Chávez and Mexican revolutionary figures, Aztec imagery woven into scenes of modern Chicago life, murals mourning loved ones lost to violence or immigration enforcement, work by neighbourhood youth alongside established artists. These were not commissioned by a museum. They were painted by residents, for residents. That is the whole point.</div>
+      <div class="callout history">
+        <strong>🌽 Aztec Roots</strong>
+        Much of the imagery draws from Aztec culture — one of the great ancient civilisations, centred in what is now Mexico City. Quetzalcoatl, the sun calendar, warriors in ceremonial dress: a community reclaiming ancestry that colonisation tried to erase. It is still here, on the walls of a Chicago neighbourhood.
+      </div>
+      <div class="callout history">
+        <strong>👤 César Chávez — A Complex Legacy</strong>
+        You will likely see his portrait. Co-founder of the United Farm Workers in the 1960s, a genuine force for exploited farmworkers. In March 2026, a New York Times investigation published credible allegations of serious sexual abuse — including accounts from women abused as teenagers, and a statement from his co-founder Dolores Huerta. Cities have removed statues, renamed schools and streets. The movement was real. The harm was also real. The community is still working through what it means.
+      </div>
+      <div class="callout history">
+        <strong>🧡 Immigration Now</strong>
+        Mexican immigrants have done essential work in this country for over a century — in fields, restaurants, construction — often invisible, often exploited. Under expanded ICE enforcement since 2025, over 70% of those detained have no criminal record. Raids have hit workplaces, churches, homes. Chicago has been targeted. The people you walk past today live with that. The murals are not just art — they are defiance. <em>We are here.</em>
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">📸</span> Walk east from the station on 18th St — best murals concentrate in the first 8 blocks.</div>
+        <div class="tip"><span class="tip-icon">🆓</span> Free, open air. Early morning has the best light and quietest streets.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>5 min walk</span> south on Racine Ave to Cullerton St</div>
+
+  <!-- HECTOR DUARTE -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">10:30<br>AM</div>
+    </div>
+    <div class="stop-dot art"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Hector Duarte Studio Mural</div>
+        <span class="stop-tag tag-art">Free · 15 min</span>
+      </div>
+      <div class="stop-desc">One building-sized work you will not forget. Duarte is one of Pilsen's most celebrated muralists, and his building on Cullerton depicts the destruction of the monarch butterfly population by GMO agriculture — a metaphor for the destruction of Mexican land, culture, and identity. It is visually stunning and intellectually layered. Stand in front of it and just look. Let it land.</div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">📍</span> Located on Cullerton St near Racine Ave, Pilsen.</div>
+        <div class="tip"><span class="tip-icon">📸</span> Step back as far as the street allows to capture the full scale.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>7 min walk</span> west on 19th St to the museum on S Wood St</div>
+
+  <!-- NATIONAL MUSEUM OF MEXICAN ART -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">10:50<br>AM</div>
+    </div>
+    <div class="stop-dot culture"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">National Museum of Mexican Art</div>
+        <span class="stop-tag tag-free">Free · 90–120 min</span>
+      </div>
+      <div class="stop-desc">Free admission. Rated 4.8 stars with nearly 4,000 reviews — this is genuinely one of the finest art museums in Chicago, period. The permanent collection spans over 3,000 years of Mexican and Mexican-American art, from pre-Columbian artifacts to contemporary paintings. The Día de los Muertos installations have moved multiple visitors to tears. The staff is warm and deeply knowledgeable. Budget at least 90 minutes.</div>
+      <div class="callout">
+        <strong>💛 From S — La Catrina</strong>
+        This museum is where I learned the real story of La Catrina — the skull-faced woman in the wide feathered hat. Created around 1910 by engraver José Guadalupe Posada as satire: a skeleton dressed in European high-society fashion, mocking Mexican women who rejected their indigenous roots to imitate European aristocracy. Death comes for everyone equally — no finery saves you. The image languished until 1947, when Diego Rivera placed her at the centre of his greatest mural, connecting her to Aztec mythology and Frida Kahlo. She became a national symbol. Today she is on altars, faces, films, and Pixar movies. She started as a penny broadside. That is the full arc.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">🆓</span> Always free. Open Tue–Sun 10 AM – 5 PM.</div>
+        <div class="tip"><span class="tip-icon">📍</span> 1852 W 19th St, Pilsen.</div>
+      </div>
+      <a href="https://nationalmuseumofmexicanart.org/" target="_blank" class="stop-link" rel="noopener noreferrer">nationalmuseumofmexicanart.org ↗</a>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>8 min walk</span> back east on 18th St toward the restaurant</div>
+
+  <!-- LUNCH OPTION A — Cantón Regio -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">12:45<br>PM</div>
+    </div>
+    <div class="stop-dot food"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Lunch A · Cantón Regio</div>
+        <span class="stop-tag tag-food">Sit-Down · Cash Only · $</span>
+      </div>
+      <div class="stop-desc">A Pilsen institution where families have eaten for generations. Order the <em>tacos regio</em>, <em>caldo de res</em> (beef soup), or <em>huevos albañil</em> (bricklayer's eggs). Hearty and traditional. Makes you understand why people talk about this neighbourhood's food with reverence.</div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">💵</span> Cash only — ATM nearby.</div>
+        <div class="tip"><span class="tip-icon">⏱️</span> Allow ~1 hour. Slow, proper sit-down lunch.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LUNCH OPTION B — Taco Crawl -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">12:45<br>PM</div>
+    </div>
+    <div class="stop-dot food"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Lunch B · Taco Crawl on 18th St</div>
+        <span class="stop-tag tag-food">3 Spots · Cash · $</span>
+      </div>
+      <div class="stop-desc">If tacos are the call, 18th Street has some of the best in Chicago. Three places worth knowing, all walking distance from each other.</div>
+      <div class="callout history">
+        <strong>🌮 Carnitas Uruapan · 1725 W 18th St</strong>
+        A Pilsen legend since 1975 — the taqueria that helped define Chicago carnitas. Second-generation family-owned, slow-cooked in a giant cazo from Mexico. Cash only. Line out the door on weekends. Worth it.
+      </div>
+      <div class="callout history">
+        <strong>🌮 5 Rabanitos · 1758 W 18th St</strong>
+        The Infatuation's top pick for 18th Street. The carne asada is one of the best in the city — lightly topped with radish, onion, cilantro so the meat does the work. Every taco the same affordable price. Excellent veggie options too.
+      </div>
+      <div class="callout history">
+        <strong>🌮 Taqueria El Milagro · 1923 S Blue Island Ave</strong>
+        Making tortillas in Chicago since 1950. The <em>bistec asado</em> is what to order — simple, perfectly seasoned, served on their own freshly made corn tortillas. Cafeteria-style. Generations of regulars.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">💵</span> All three cash-preferred — bring bills.</div>
+        <div class="tip"><span class="tip-icon">🌮</span> Doable as a crawl: 2–3 tacos at each, walk between them.</div>
+        <div class="tip"><span class="tip-icon">⏱️</span> Allow 60–75 min. Pace yourself.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANSIT TO CHINATOWN -->
+  <div class="transit-connector">🚗 <span>~10 min drive</span> south from Pilsen to Chinatown — park near Cermak &amp; Wentworth</div>
+
+  <div class="neighbourhood-intro" style="margin-top:8px;">
+    <h3>About Chinatown</h3>
+    Dating to the early 1900s, when Chinese residents were pushed out of downtown by rising rents and anti-Chinese hostility. They settled here and built a community that has lasted over a century — unlike many American Chinatowns that have faded, Chicago's has stayed alive and grown. These streets are the product of people who came with little and refused to let go. As someone who did the same thing over 25 years ago, I understand that more than I can easily say. Two zones: old Wentworth Avenue (traditional, family-owned) and the newer Chinatown Square plaza (more modern). Both worth your time.
+  </div>
+
+  <div class="section-label"><span>Afternoon · Chinatown</span></div>
+
+  <!-- CHINATOWN ARCH -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">2:20<br>PM</div>
+    </div>
+    <div class="stop-dot free"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Chinatown Gateway Arch</div>
+        <span class="stop-tag tag-free">Free · Best Photo Spot #1</span>
+      </div>
+      <div class="stop-desc">The iconic red-and-gold arch on Wentworth Avenue, built in 1975 — the symbolic entrance to the neighbourhood and one of the most photographed spots on Chicago's South Side. Stand under it with the street unfurling behind you. This is your arrival shot.</div>
+      <div class="callout history">
+        <strong>🏮 Why Do All Chinatowns Have an Arch?</strong>
+        It is called a <em>paifang</em> — a traditional Chinese gate, originally marking the entrance to an administrative district in ancient Chinese cities. In America, it became the visual declaration of a Chinese community's presence: we are here, this is our space. Some were donated by China or Taiwan as diplomatic gestures; Chicago's was sponsored by Taiwan in 1975. You have already seen San Francisco's. The story is the same here — a community claiming its place permanently.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">📸</span> Face north from under the arch for the classic Wentworth Ave depth-of-field shot.</div>
+        <div class="tip"><span class="tip-icon">🚇</span> A 3 min walk south from the Cermak-Chinatown Red Line station.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>2 min walk</span> south on Wentworth Ave</div>
+
+  <!-- WENTWORTH WALK -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">2:35<br>PM</div>
+    </div>
+    <div class="stop-dot free"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Wentworth Avenue Stroll</div>
+        <span class="stop-tag tag-free">Free · 30 min</span>
+      </div>
+      <div class="stop-desc">Walk south along Wentworth. Peek into herbalist shops with jars of dried mushrooms and roots lining the walls. Spot roast ducks hanging in bakery windows. Look up at the red lanterns strung between buildings — on a bright Saturday afternoon, they glow. Stop into a bakery for a pineapple bun or wife cake if you need a snack between lunch and dinner.</div>
+      <div class="callout">
+        <strong>💛 From S — On Those Ducks in the Window</strong>
+        I had Peking duck the traditional way in Beijing. The real version: roasted whole, skin paper-thin and perfectly crisp, sliced tableside. You eat it with bao buns, oyster sauce, and — this surprised me — sugar. Yes, sugar. It sounds strange. It is absolutely right. When the meat is done, the carcass becomes bone broth soup. Every part used. Nothing wasted. One of those meals that makes you understand a culture through food.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">🥐</span> Try a pineapple bun from any of the bakeries along the strip — sweet, soft, and perfect.</div>
+        <div class="tip"><span class="tip-icon">📸</span> Look up — the lanterns above the street are magic in afternoon light.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>5 min walk</span> west to Chinatown Square</div>
+
+  <!-- CHINATOWN SQUARE -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">3:05<br>PM</div>
+    </div>
+    <div class="stop-dot culture"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Chinatown Square Plaza</div>
+        <span class="stop-tag tag-free">Free · Best Photo Spot #2 · 45 min</span>
+      </div>
+      <div class="stop-desc">Your main hangout before dinner. In the central plaza are 12 bronze zodiac statues — one for each year in the Chinese 12-year cycle. The <em>Chinese in America</em> mural on the plaza wall is a great portrait backdrop. Two levels of bubble tea cafés, dessert shops, and gift stores. Grab a boba milk tea and take your time.</div>
+      <div class="callout">
+        <strong>💛 From S — Start with the Monkey</strong>
+        J is a Monkey. Go to the Monkey statue first and read the description — out loud, to J. Then find your own animal and read it. Notice anything different? I'll tell you the full story in person so you can laugh. Then find your bf's sign and compare all three.
+      </div>
+      <div class="callout history">
+        <strong>🎬 On This Block</strong>
+        Various Chicago-set dramas have used Chinatown as a backdrop. But the neighbourhood's most compelling story is its own: a community that survived displacement, racism, and a century of urban change, and still serves some of the best food in the city.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">📸</span> Find your zodiac animal at the statues — great photo and great conversation.</div>
+        <div class="tip"><span class="tip-icon">🧋</span> Grab boba tea from any of the square's cafés and wander the upper level.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="transit-connector">🚶 <span>3 min walk</span> back toward the restaurant for dinner</div>
+
+  <div class="section-label"><span>Evening · Chinatown</span></div>
+
+  <!-- DINNER OPTION A — Shabu -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">5:30<br>PM</div>
+    </div>
+    <div class="stop-dot finale"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Dinner A · Shabu Plus 🍲</div>
+        <span class="stop-tag tag-dinner">S's Pick · $$</span>
+      </div>
+      <div class="stop-desc">A conveyor belt rotates continuously around the restaurant carrying veggie sides, noodles, tofu, and small plates. You grab what looks good. In front of you is a pot of hot broth — pick your broth, then cook everything yourself tableside. All you can eat. Hands-on, communal, genuinely one of the more fun ways to eat dinner in this city.</div>
+      <div class="callout">
+        <strong>💛 From S</strong>
+        The genius is the automation — food keeps coming past you and you decide what stays. No menu anxiety, no waiting for a server. You control the meal, cook at your own pace. Great for conversation because everyone is focused on the same thing. My top pick for Saturday night.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">📅</span> 4.9 stars — reserve in advance for Saturday.</div>
+        <div class="tip"><span class="tip-icon">🌶️</span> Pick your broth: tonkatsu (mild), kimchi (spicy), or half-and-half.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DINNER OPTION B — MingHin -->
+  <div class="stop">
+    <div class="stop-time">
+      <div class="time-label">5:30<br>PM</div>
+    </div>
+    <div class="stop-dot finale"></div>
+    <div class="stop-content">
+      <div class="stop-header">
+        <div class="stop-title">Dinner B · MingHin Dim Sum 🥟</div>
+        <span class="stop-tag tag-dinner">Traditional · $$</span>
+      </div>
+      <div class="stop-desc">The best dim sum in Chicago — widely considered the best in the Midwest. Cantonese-style served all day: steamed dumplings, BBQ pork buns, siu mai, taro root puffs, egg tarts, lotus-wrapped sticky rice. Vast menu, consistently excellent, generous portions, fair prices.</div>
+      <div class="callout history">
+        <strong>🥟 What is Dim Sum?</strong>
+        A Cantonese tradition from the teahouses of southern China — small plates alongside tea. Dumplings, buns, rice rolls, egg tarts. You order many things and share everything. Loud, unhurried, communal. In Hong Kong it is a weekend ritual. Here it is how families gather.
+      </div>
+      <div class="callout">
+        <strong>💛 From S</strong>
+        A friend whose family is from China introduced me to this years ago. She guided me through every basket. Now we go a few times a year. Order a lot. The egg tarts alone are worth it.
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="tip-icon">📍</span> 2168 S Archer Ave — 5 min walk from the Square.</div>
+        <div class="tip"><span class="tip-icon">📅</span> Served all day. Busy Saturday evenings — walk in or call ahead.</div>
+        <div class="tip"><span class="tip-icon">🍵</span> Order hot tea when you sit down. Non-negotiable.</div>
+      </div>
+      <a href="https://www.minghincuisine.com/chinatown" target="_blank" class="stop-link" rel="noopener noreferrer">minghincuisine.com ↗</a>
+    </div>
+  </div>
+
+  <!-- RETURN DAY 2 -->
+  <div class="return-banner">
+    <h3>Return to Evanston — Saturday Night</h3>
+    <div class="return-route">Chinatown → Lake Shore Drive north → Evanston (~40 min)</div>
+    <div class="return-note">
+      Drive back north after dinner. <strong>Lake Shore Drive</strong> at night with the skyline lit up on your left is worth it — take the scenic route if you can. Google Maps will navigate you home from Chinatown. ~40 min depending on traffic.
+    </div>
+  </div>
+
+</div>
+
+<!-- NEXT DAY CTA -->
+<div class="next-day-cta">
+  <a href="#day3" class="next-day-btn">
+    Next Day: Sunday — Your Choice →
+  </a>
+</div>
+
+</div><!-- end day2 -->
+
+<div class="day-divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     DAY 3 — SUNDAY — YOUR CHOICE
+═══════════════════════════════════════════════ -->
+<div id="day3">
+
+<div class="day-header">
+  <div class="day-number">Day Three · Sunday</div>
+  <div class="day-title d3">Sunday is <em>Yours</em></div>
+  <div class="day-desc">Two full days of Chicago. Now a day that belongs entirely to you — rest, explore, or both. Three options below. All good.</div>
+</div>
+
+<div class="container">
+
+  <div class="callout" style="margin:0 0 32px; font-size:14.5px; padding: 18px 22px;">
+    <strong>💛 From S</strong>
+    Sunday is yours. Two full days of Chicago is a lot — and I mean that in the best way. Rest at home if you need it. Or pick one of the options below. Option C is close to my heart — Lincoln Square is a neighbourhood I lived in during my Chicago years. But all three are good. You decide.
+  </div>
+
+  <div class="section-label"><span>Choose Your Sunday</span></div>
+
+  <div class="sunday-options">
+
+    <!-- OPTION A: REST AT HOME OR MILWAUKEE -->
+    <div class="sunday-option">
+      <div class="sunday-option-label">Option A</div>
+      <h3>Rest at Home — or Milwaukee Day Trip 🏠</h3>
+      <p>Sleep in. Slow breakfast. Let the city come to you through the window for one morning. We make coffee, put on music, just be together. Some of the best visits are the ones where nothing is planned.</p>
+      <ul>
+        <li>☕ <span>Slow morning coffee together</span></li>
+        <li>📚 <span>Books, conversation, no agenda</span></li>
+        <li>🌳 <span>Evening walk in Evanston along the lake</span></li>
+        <li>🍕 <span>Dinner at home — I'll cook something good</span></li>
+      </ul>
+      <p style="margin-top:16px; padding-top:16px; border-top:1px solid var(--rule); font-size:14px; line-height:1.7;"><strong>Or — if you want to stretch your legs:</strong> Milwaukee is less than 2 hours north by car. The <a href="https://www.harley-davidson.com/us/en/museum.html" target="_blank" style="color:var(--accent)" rel="noopener noreferrer">Harley-Davidson Museum</a> tells the full story of one of America's most iconic brands — over 450 motorcycles including Elvis's bike and the Captain America chopper from <em>Easy Rider</em>. Combine it with Mitchell Park Conservatory's three domes (tropical, desert, events) and you have two very different sides of Milwaukee in one day.</p>
+      <ul style="margin-top:10px;">
+        <li>🏍️ <span>Harley-Davidson Museum — 400 W Canal St</span></li>
+        <li>🌿 <span>Mitchell Park Conservatory — 524 S Layton Blvd</span></li>
+        <li>🍺 <span>Milwaukee — home of American beer culture</span></li>
+        <li>🚗 <span>~1h 45min drive from Evanston</span></li>
+      </ul>
+    </div>
+
+    <!-- OPTION C: WICKER PARK / BUCKTOWN -->
+    <div class="sunday-option">
+      <div class="sunday-option-label">Option B</div>
+      <h3>Wicker Park &amp; Bucktown 🎸</h3>
+      <p>Chicago's creative neighbourhood — vintage shops, long walks, street art, and a history layered with music and counterculture. This is where Chicago's artistic soul has lived since the 1980s.</p>
+      <ul>
+        <li>🚇 <span>Blue Line to Damen station (~45 min from Evanston)</span></li>
+        <li>🛍️ <span>Wicker Park vintage strip: Ragstock, Reckless Records, boutiques on Milwaukee Ave</span></li>
+        <li>🎨 <span>Street art along Division St and the Six Corners</span></li>
+        <li>☕ <span>Coffee at Wormhole Coffee — DeLorean inside</span></li>
+        <li>🍜 <span>Lunch at Big Star Tacos — legendary and lively</span></li>
+        <li>📖 <span>Myopic Books — three floors of secondhand treasures</span></li>
+      </ul>
+      <div class="callout history" style="margin-top:14px; font-size:12px;">
+        <strong>🎵 History</strong>
+        Wicker Park was the epicentre of Chicago's alternative music scene in the early 1990s — Smashing Pumpkins, Liz Phair, and Urge Overkill all emerged from these streets. The neighbourhood's art and DIY spirit has never fully left.
+      </div>
+    </div>
+
+    <!-- OPTION C: LINCOLN SQUARE / ANDERSONVILLE -->
+    <div class="sunday-option">
+      <div class="sunday-option-label">Option C · S's Pick</div>
+      <h3>Lincoln Square &amp; Andersonville 🌍</h3>
+      <p>Two of Chicago's most charming neighbourhood high streets — one rooted in German and European immigrant history, the other in Scandinavian heritage and now one of the city's most vibrant and welcoming communities. I lived in Lincoln Square during one chapter of my Chicago years, and I still go back. It has that quality where the more you walk it, the more you find.</p>
+      <ul>
+        <li>🚇 <span>Brown Line to Western station for Lincoln Square (~50 min)</span></li>
+        <li>🥐 <span>Brunch at Luella's Southern Kitchen or Café Selmarie</span></li>
+        <li>🎶 <span>Old Town School of Folk Music — architecture worth seeing</span></li>
+        <li>🛍️ <span>Specialty shops and European delis along Lincoln Ave</span></li>
+        <li>🚶 <span>Walk north to Andersonville on Clark St (~25 min walk)</span></li>
+        <li>📚 <span>Women &amp; Children First bookshop — iconic, wonderful</span></li>
+        <li>🍽️ <span>Dinner on Clark St — Swedish bakeries, Thai, Middle Eastern</span></li>
+      </ul>
+      <div class="callout history" style="margin-top:14px; font-size:12px;">
+        <strong>🌍 History</strong>
+        Andersonville was settled by Swedish immigrants in the early 20th century and still has traces of that heritage — bakeries, blue and yellow details, the Swedish-American Museum. Today it is one of Chicago's most welcoming and characterful neighbourhoods.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div><!-- end day3 -->
+
+<!-- ABOUT THIS GUIDE -->
+<div class="about-band">
+  <details class="about-accordion">
+    <summary class="about-summary">
+      <span class="about-label">About This Guide</span>
+      <span class="about-icon">＋</span>
+    </summary>
+    <div class="about-body">
+      <p>Chicago is not downtown. The real Chicago is its neighbourhoods — 77 official community areas, anywhere from 200 to 240 distinct neighbourhoods in total, boundaries constantly argued about. Chicagoans don't say they live in Chicago. They say they live in Wicker Park, or Pilsen, or Lincoln Square. The neighbourhood is the identity.</p>
+      <p>I have been here for over 25 years — Edgewater, Mayfair, Lakeview, Lincoln Square, now Evanston. What I learned: Chicago's diversity is not a talking point. It is the whole thing. I chose three neighbourhoods for you: one I know well as a Chicagoan, one that shows what art looks like when it comes from survival, and one where a century-old immigrant community still thrives and feeds you magnificently.</p>
+      <p>Three days. Three different Chicagos. All of them real.</p>
+    </div>
+  </details>
+</div>
+
+<style>
+/* ── HERO ── */
+.hero {
+  background: var(--steel);
+  color: white;
+  text-align: center;
+  padding: 56px 24px 44px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 60%, rgba(192,57,43,0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 20%, rgba(184,134,11,0.25) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(52px, 18vw, 100px);
+  font-weight: 900;
+  line-height: 1;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.hero-title em { font-style: italic; color: var(--gold); }
+
+.hero-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(13px, 3.5vw, 18px);
+  font-style: italic;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.hero-pills {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.hero-pill {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 30px;
+  padding: 9px 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.hero-pill:hover, .hero-pill:active { background: rgba(255,255,255,0.22); }
+
+/* ── ABOUT ACCORDION ── */
+.about-band {
+  background: var(--gold);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-accordion {
+  width: 100%;
+}
+
+.about-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.about-summary::-webkit-details-marker { display: none; }
+
+.about-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+}
+
+.about-icon {
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  transition: transform 0.25s;
+  line-height: 1;
+}
+
+.about-accordion[open] .about-icon { transform: rotate(45deg); }
+
+.about-body {
+  padding: 0 28px 24px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.about-body p {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.75;
+  color: white;
+  margin-top: 16px;
+}
+
+@media (max-width: 640px) {
+  .hero { padding: 44px 20px 36px; }
+  .hero-sub { margin-bottom: 24px; }
+  .hero-pills { gap: 6px; }
+  .hero-pill { padding: 8px 12px; font-size: 9px; }
+  .about-summary { padding: 16px 20px; }
+  .about-body { padding: 0 20px 20px; }
+  .about-body p { font-size: 14px; }
+}
+</style>
+
+<!-- ═══════════════════════════════════════════════
+     DAY 1 — FRIDAY — LINCOLN PARK
+═══════════════════════════════════════════════ -->
+<div id="day1">
+
+<div class="day-header">
+  <div class="day-number">Day One · Friday</div>
+  <div class="day-title d1">Lincoln <em>Park</em></div>
+  <div class="day-desc">One of Chicago's most beautiful and walkable neighbourhoods — parks, a free zoo, a Victorian greenhouse, the lakefront, and a legendary comedy club. A neighbourhood I know well as a Chicagoan. A very good Friday.</div>
+</div>
+
+<!-- DEDICATION -->
+<div class="dedication-wrap" id="letter">
+  <details class="dedication-accordion">
+    <summary class="dedication-summary">
+      <span class="dedication-summary-icon">✉️</span>
+      <span class="dedication-summary-text">A Letter from S to Sister</span>
+      <span class="dedication-accordion-icon">＋</span>
+    </summary>
+    <div class="dedication">
+    <div class="dedication-label">A note from S</div>
+    <div class="dedication-text">
+      <p>For Sister —</p>
+      <p>I came to Chicago over 25 years ago with 500 euros, a readiness to work hard, and the stubborn belief that it would eventually add up to something. It did. But it took time, and more of me than I knew I had to give.</p>
+      <p>In the many years since, I have moved through different neighborhoods across the city, and now I live in Evanston where you are sleeping this weekend. Every neighbourhood taught me something. Edgewater taught me loneliness and the size of this country. Lakeview taught me that a city can hold you. Lincoln Square taught me that immigrant communities build beautiful things not despite hardship but because of it. Evanston taught me what it finally feels like to be at home.</p>
+      <p>Chicago's real character is its people — the ones who painted Pilsen's murals, kept Chinatown alive for a century, turned Lincoln Square into something worth returning to. Immigrants, all of them, doing the same thing I did: showing up and refusing to quit.</p>
+      <p>I made this guide because I love you and want you to see what I see — not the postcard, the real thing. If N changes everything and the weekend looks nothing like this, that is fine. There are years ahead of us. Come back every year until you have done all of it.</p>
+      <p>I love this country — the openness, the belief that you can arrive with nothing and build a life. I am not blind to what is not good here. I have watched it wrestle with itself for many years. I think about where we came from — Europe, colonisation, what western culture built and what it took. Complicated. But this city, these people — proof that something real can grow in complicated soil.</p>
+      <p>Come back whenever you want. The city will still be here. So will I.</p>
+      <p class="dedication-sign">With love,<br><strong>S</strong></p>
+    </div>
+  </details>
+</div>
+</div>
+
+<footer>
+  Chicago, Illinois &nbsp;·&nbsp; A Weekend Guide &nbsp;·&nbsp; Prepared with love by S for Sister
+</footer>
+
+
+<button id="backToTop" class="back-to-top-fab" aria-label="Back to top">⬆️</button>
+</body>
+</html>
